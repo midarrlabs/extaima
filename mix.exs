@@ -1,9 +1,9 @@
-defmodule Exduration.MixProject do
+defmodule Extaima.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :exduration,
+      app: :extaima,
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
