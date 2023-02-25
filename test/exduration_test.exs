@@ -17,22 +17,20 @@ defmodule ExdurationTest do
            }
   end
 
-  @doc """
-  *
-  * 1:00 (1 minute) should be 00:01:00
-  *
-  """
-  test "it should parse 1 minute to 60 seconds" do
-    assert Exduration.parse("1:00") === 60
+  test "it should parse 1 minute" do
+    assert Exduration.parse("1:00") === %Exduration{
+             hours: 0,
+             minutes: 1,
+             seconds: 0
+           }
   end
 
-  @doc """
-  *
-  * 12:12 (12 minutes, 12 seconds) should be 00:12:12
-  *
-  """
-  test "it should parse 12 minutes 12 seconds to 732 seconds" do
-    assert Exduration.parse("12:12") === 732
+  test "it should parse 12 minutes 12 seconds" do
+    assert Exduration.parse("12:12") === %Exduration{
+             hours: 0,
+             minutes: 12,
+             seconds: 12
+           }
   end
 
   @doc """

@@ -20,11 +20,19 @@ defmodule Exduration do
   end
 
   def parse(<<minute::binary-size(1), ":", _seconds::binary>>) do
-    String.to_integer(minute) * 60
+    %Exduration{
+      hours: 0,
+      minutes: String.to_integer(minute),
+      seconds: 0,
+    }
   end
 
   def parse(<<minutes::binary-size(2), ":", seconds::binary>>) do
-    (String.to_integer(minutes) * 60) + String.to_integer(seconds)
+    %Exduration{
+      hours: 0,
+      minutes: String.to_integer(minutes),
+      seconds: String.to_integer(seconds),
+    }
   end
 
   def get_second(<<_hour::binary-size(1), ":", _minutes::binary-size(2), ":", seconds::binary>>) do
