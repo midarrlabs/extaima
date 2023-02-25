@@ -1,22 +1,20 @@
 defmodule ExdurationTest do
   use ExUnit.Case
 
-  @doc """
-  *
-  * 0:07 (7 seconds) should be 00:00:07
-  *
-  """
   test "it should parse 7 seconds" do
-    assert Exduration.parse("0:07") === 7
+    assert Exduration.parse("0:07") === %Exduration{
+             hours: 0,
+             minutes: 0,
+             seconds: 7
+           }
   end
 
-  @doc """
-  *
-  * 0:30 (30 seconds) should be 00:00:30
-  *
-  """
   test "it should parse 30 seconds" do
-    assert Exduration.parse("0:30") === 30
+    assert Exduration.parse("0:30") === %Exduration{
+             hours: 0,
+             minutes: 0,
+             seconds: 30
+           }
   end
 
   @doc """

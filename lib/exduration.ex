@@ -1,4 +1,7 @@
 defmodule Exduration do
+  defstruct [:hours, :minutes, :seconds]
+
+  @type t :: %Exduration{hours: integer, minutes: integer, seconds: integer}
 
   def parse(<<hour::binary-size(1), ":", minutes::binary-size(2), ":", seconds::binary>>) do
     (String.to_integer(hour) * 3600) + (String.to_integer(minutes) * 60) + String.to_integer(seconds)
@@ -9,7 +12,11 @@ defmodule Exduration do
   end
 
   def parse(<<"0:", seconds::binary>>) do
-    String.to_integer(seconds)
+    %Exduration{
+      hours: 0,
+      minutes: 0,
+      seconds: String.to_integer(seconds),
+    }
   end
 
   def parse(<<minute::binary-size(1), ":", _seconds::binary>>) do
