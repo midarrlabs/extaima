@@ -42,28 +42,8 @@ defmodule Exduration do
       seconds: String.to_integer(seconds),
     }
   end
-
-  def get_second(<<_hour::binary-size(1), ":", _minutes::binary-size(2), ":", seconds::binary>>) do
-    String.to_integer(seconds)
-  end
-
-  def get_second(<<_hours::binary-size(2), ":", _minutes::binary-size(2), ":", seconds::binary>>) do
-    String.to_integer(seconds)
-  end
-
-  def get_minute(<<_hour::binary-size(1), ":", minutes::binary-size(2), ":", _seconds::binary>>) do
-    String.to_integer(minutes)
-  end
-
-  def get_minute(<<_hours::binary-size(2), ":", minutes::binary-size(2), ":", _seconds::binary>>) do
-    String.to_integer(minutes)
-  end
-
-  def get_hour(<<hour::binary-size(1), ":", _rest::binary>>) do
-    String.to_integer(hour)
-  end
-
-  def get_hour(<<hours::binary-size(2), ":", _rest::binary>>) do
-    String.to_integer(hours)
+  
+  def seconds(%Exduration{hours: hours, minutes: minutes, seconds: seconds}) do
+    (hours * 3600) + (minutes * 60) + seconds
   end
 end

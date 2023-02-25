@@ -48,28 +48,20 @@ defmodule ExdurationTest do
              seconds: 4
            }
   end
-
+  
   test "it should get seconds" do
-    assert Exduration.get_second("1:40:30") === 30
+    assert Exduration.seconds(%Exduration{
+             hours: 12,
+             minutes: 23,
+             seconds: 4
+           }) === 44584
   end
 
-  test "it should get second" do
-    assert Exduration.get_second("1:40:03") === 3
-  end
-
-  test "it should get minutes" do
-    assert Exduration.get_minute("1:40:30") === 40
-  end
-
-  test "it should get minute" do
-    assert Exduration.get_minute("1:04:30") === 4
-  end
-
-  test "it should get hours" do
-    assert Exduration.get_hour("25:40:30") === 25
-  end
-
-  test "it should get hour" do
-    assert Exduration.get_hour("2:40:30") === 2
+  test "it should get seconds with single digit hour" do
+    assert Exduration.seconds(%Exduration{
+             hours: 1,
+             minutes: 23,
+             seconds: 4
+           }) === 4984
   end
 end
